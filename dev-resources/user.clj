@@ -7,5 +7,5 @@
 (defn q [query-string] (lacinia/execute schema query-string nil nil))
 
 (comment
-  (q "{ gameById(id: \"1234\") { id name summary }}"))
+  (q "{ gameById(id: \"1234\") { id name designers { name url games { name }}}}"))
 
