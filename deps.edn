@@ -1,7 +1,8 @@
 {:aliases {:build {:deps {io.github.clojure/tools.build {:mvn/version
                                                            "0.10.3"}},
                    :ns-default build},
-           :dev {:extra-paths ["dev-resources"]},
+           :dev {:extra-deps {nrepl/nrepl {:mvn/version "1.1.0"}},
+                 :extra-paths ["dev-resources"]},
            :run-m {:main-opts ["-m" "my.clojure-game-geek"]},
            :run-x {:exec-args {:name "Clojure"},
                    :exec-fn greet,
