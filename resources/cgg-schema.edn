@@ -1,0 +1,24 @@
+{:objects
+   {:BoardGame
+      {:description "A physical or virtual board game.",
+       :fields
+         {:description {:description "A long-form description of the game.",
+                        :type String},
+          :id {:type (non-null ID)},
+          :maxPlayers {:description
+                         "The maximum number of players the game supports.",
+                       :type Int},
+          :minPlayers {:description
+                         "The minimum number of players the game supports.",
+                       :type Int},
+          :name {:type (non-null String)},
+          :playTime {:description "Play time, in minutes, for a typical game.",
+                     :type Int},
+          :summary {:description "A one-line summary of the game.",
+                    :type String}}},
+    :Query {:fields {:gameById
+                       {:args {:id {:type ID}},
+                        :description
+                          "Access a BoardGame by it's unique id, if it exists.",
+                        :type :BoardGame}}}}}
+
