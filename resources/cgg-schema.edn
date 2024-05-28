@@ -4,6 +4,8 @@
        :fields
          {:description {:description "A long-form description of the game.",
                         :type String},
+          :designers {:description "Designer who contributed to the game",
+                      :type (non-null (list :Designer))},
           :id {:type (non-null ID)},
           :maxPlayers {:description
                          "The maximum number of players the game supports.",
@@ -16,6 +18,13 @@
                      :type Int},
           :summary {:description "A one-line summary of the game.",
                     :type String}}},
+    :Designer
+      {:description "A person who may have contributed to a board game design.",
+       :fields {:games {:description "Games designed by this designer",
+                        :type (non-null (list :BoardGame))},
+                :id {:type (non-null ID)},
+                :name {:type (non-null String)},
+                :url {:description "Home page URL, if knwon", :type String}}},
     :Query {:fields {:gameById
                        {:args {:id {:type ID}},
                         :description
