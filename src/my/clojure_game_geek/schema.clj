@@ -5,7 +5,19 @@
             [com.walmartlabs.lacinia.schema :as schema]
             [clojure.edn :as edn]))
 
-(defn resolver-map [] {:Query/gameById (fn [_context _args _value] nil)})
+(defn resolve-game-by-id
+  [games-map _context args _value]
+  (let [{:keys [id]} args] (get games-map id)))
+
+(defn resolver-map
+  []
+  (let [cgg-data (-> (io/resource "cgg-data.edn")
+                     slurp
+                     edn/read-string)
+        games-map (->> cgg-data
+                       :games
+                       (reduce #(assoc %1 (:id %2) %2) {}))]
+    {:Query/gameById (partial resolve-game-by-id games-map)}))
 
 (defn load-schema
   []
